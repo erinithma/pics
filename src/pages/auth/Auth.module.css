@@ -1,0 +1,31 @@
+.auth {
+  display: flex;
+  flex-direction: column;
+  padding: 80px;
+  background-color: #eee;
+  margin: auto;
+  width: 300px;
+}
+
+.auth button {
+  border: 0;
+  background-color: #ccc;
+  border-radius: 8px;
+  padding: 12px;
+  cursor: pointer;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.auth label {
+  margin-bottom: 12px;
+  display: block;
+}
+
+.auth input {
+  display: inline-block;
+  margin-left: 12px;
+}
+
+.error {
+  color: red;
+}
