@@ -9,22 +9,11 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Routes>
-          <Route path="/admin/auth" element={<Auth />} />
-          <Route
-            path="/admin"
-            element={
-              <PageWrap>
-                <Images />
-              </PageWrap>
-            }
-          />
+          <Route path="/admin/login" element={<Auth />} />
+          <Route path="/admin" element={<PageWrap page={<Images />} />} />
           <Route
             path="/admin/page/:page"
-            element={
-              <PageWrap>
-                <Images />
-              </PageWrap>
-            }
+            element={<PageWrap page={<Images />} />}
           />
           <Route
             path="*"

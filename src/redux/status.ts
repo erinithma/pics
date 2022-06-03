@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-export type Status = "unset" | "success" | "fail";
+import { Status } from "../common/types";
 
 export const initialState: { value: Status } = {
   value: "unset",

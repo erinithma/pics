@@ -11,13 +11,17 @@ export class Api {
     addToken: boolean = true
   ): Promise<Response> {
     const body: any = data;
-    if (addToken) {
-      body.token = getToken();
-    }
-    return fetch(`${process.env.REACT_APP_URL}${url}`, {
+
+    const obj: RequestInit = {
       body: JSON.stringify(body),
       method,
-    })
+    };
+
+    if (addToken) {
+      obj.headers = { Authorization: `Bearer ${getToken()}` };
+    }
+
+    return fetch(`${process.env.REACT_APP_URL}${url}`, obj)
       .then((res) => {
         return res.json();
       })
@@ -29,8 +33,11 @@ export class Api {
       });
   }
 
-  static getImages(page: number): Promise<{ images: Image[]; count: number }> {
-    return Api.request("/images", "POST", { page });
+  static getImages(
+    page: number,
+    perPage: number
+  ): Promise<{ images: Image[]; count: number }> {
+    return Api.request("/images", "POST", { page, perPage });
   }
 
   static removeImage(name: string) {

@@ -1,9 +1,9 @@
 import { useEffect, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getImages, getCount, deleteImage, fetchImages } from "../../reducer";
+import { getImages, getCount, deleteImage, fetchImages } from "../../redux";
 import React from "react";
-import store from "../../store";
+import store from "../../redux/store";
 import styles from "./Images.module.css";
 import cx from "classnames";
 

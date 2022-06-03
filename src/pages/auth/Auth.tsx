@@ -4,10 +4,10 @@ import { UserData } from "../../common/types";
 import { useNavigate } from "react-router-dom";
 import styles from "./Auth.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { set } from "../../reducer/status";
-import store from "../../store";
-import { auth } from "../../reducer/auth";
-import { getStatus } from "../../reducer";
+import { set } from "../../redux/status";
+import store from "../../redux/store";
+import { auth } from "../../redux/auth";
+import { getStatus } from "../../redux";
 
 export const Auth = () => {
   const { control, handleSubmit, reset } = useForm({

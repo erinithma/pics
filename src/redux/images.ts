@@ -7,7 +7,7 @@ export const fetchImages = createAsyncThunk(
   async (page: number) => {
     try {
       return {
-        ...(await Api.getImages(page)),
+        ...(await Api.getImages(page, +(process.env.REACT_APP_PER_PAGE || 20))),
         status: "success",
       };
     } catch {
@@ -26,7 +26,10 @@ export const deleteImage = createAsyncThunk(
     try {
       await Api.removeImage(data.name);
       return {
-        ...(await Api.getImages(data.page)),
+        ...(await Api.getImages(
+          data.page,
+          +(process.env.REACT_APP_PER_PAGE || 20)
+        )),
         status: "success",
       };
     } catch {
