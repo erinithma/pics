@@ -1,17 +1,20 @@
 import { FC, ReactElement, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { isError } from "../reducer";
+import { getStatus } from "../reducer";
+import { set } from "../reducer/status";
 
 export const PageWrap: FC<{ children: ReactElement }> = ({ children }) => {
-  const error = useSelector(isError);
+  const status = useSelector(getStatus);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (error) {
+    if (status === "fail") {
+      dispatch(set("unset"));
       navigate("/admin/auth");
     }
-  }, [error, navigate]);
+  }, [status, navigate, dispatch]);
 
   return <>{children}</>;
 };

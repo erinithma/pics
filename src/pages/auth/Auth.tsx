@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { UserData } from "../../common/types";
-import { Api } from "../../common/api";
 import { useNavigate } from "react-router-dom";
 import styles from "./Auth.module.css";
-import { useDispatch } from "react-redux";
-import { set } from "../../reducer/error";
+import { useDispatch, useSelector } from "react-redux";
+import { set } from "../../reducer/status";
+import store from "../../store";
+import { auth } from "../../reducer/auth";
+import { getStatus } from "../../reducer";
 
 export const Auth = () => {
   const { control, handleSubmit, reset } = useForm({
@@ -20,17 +22,23 @@ export const Auth = () => {
 
   const [error, setError] = useState("");
 
-  const onSubmit = (data: UserData) => {
-    Api.auth(data)
-      .then(() => {
-        setError("");
-        dispatch(set(false));
+  const status = useSelector(getStatus);
+
+  useEffect(() => {
+    if (status === "fail") {
+      reset();
+      setError("Неверный логин или пароль");
+    } else {
+      setError("");
+      if (status === "success") {
+        dispatch(set("unset"));
         navigate("/admin");
-      })
-      .catch(() => {
-        reset();
-        setError("Неверный логин или пароль");
-      });
+      }
+    }
+  }, [status, navigate, dispatch, reset]);
+
+  const onSubmit = (data: UserData) => {
+    store.dispatch(auth(data));
   };
 
   return (
@@ -50,7 +58,7 @@ export const Auth = () => {
           <Controller
             name="password"
             control={control}
-            render={({ field }) => <input {...field} />}
+            render={({ field }) => <input type="password" {...field} />}
           />
         </label>
 

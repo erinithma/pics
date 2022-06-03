@@ -31,7 +31,7 @@ export const Images = () => {
     <>
       <div className={styles.images}>
         {images.map((i) => (
-          <div>
+          <div key={i.name}>
             <img className={styles.img} src={i.url} alt={i.name} />
             <br />
             <button className={styles.button} onClick={() => remove(i.name)}>
@@ -44,6 +44,7 @@ export const Images = () => {
       <div>
         {new Array(pages).fill(null).map((_, i) => (
           <button
+            key={i}
             className={cx(styles.page, { [styles.active]: i + 1 === page })}
             onClick={() => gotoPage(i + 1)}
           >

@@ -6,17 +6,15 @@ export const fetchImages = createAsyncThunk(
   "api/images",
   async (page: number) => {
     try {
-      console.log("SUCC");
       return {
         ...(await Api.getImages(page)),
-        error: false,
+        status: "success",
       };
     } catch {
-      console.log("FAIL");
       return {
         images: [],
         count: 0,
-        error: true,
+        status: "fail",
       };
     }
   }
@@ -29,13 +27,13 @@ export const deleteImage = createAsyncThunk(
       await Api.removeImage(data.name);
       return {
         ...(await Api.getImages(data.page)),
-        error: false,
+        status: "success",
       };
     } catch {
       return {
         images: [],
         count: 0,
-        error: true,
+        status: "fail",
       };
     }
   }
