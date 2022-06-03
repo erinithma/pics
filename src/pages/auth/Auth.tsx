@@ -4,6 +4,8 @@ import { UserData } from "../../common/types";
 import { Api } from "../../common/api";
 import { useNavigate } from "react-router-dom";
 import styles from "./Auth.module.css";
+import { useDispatch } from "react-redux";
+import { set } from "../../reducer/error";
 
 export const Auth = () => {
   const { control, handleSubmit, reset } = useForm({
@@ -14,6 +16,7 @@ export const Auth = () => {
   });
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [error, setError] = useState("");
 
@@ -21,6 +24,7 @@ export const Auth = () => {
     Api.auth(data)
       .then(() => {
         setError("");
+        dispatch(set(false));
         navigate("/admin");
       })
       .catch(() => {

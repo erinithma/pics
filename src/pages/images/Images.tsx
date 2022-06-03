@@ -1,13 +1,7 @@
 import { useEffect, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import {
-  getImages,
-  getCount,
-  deleteImage,
-  fetchImages,
-  isError,
-} from "../../reducer";
+import { getImages, getCount, deleteImage, fetchImages } from "../../reducer";
 import React from "react";
 import store from "../../store";
 import styles from "./Images.module.css";
@@ -32,14 +26,6 @@ export const Images = () => {
   useEffect(() => {
     store.dispatch(fetchImages(page));
   }, [page]);
-
-  const error = useSelector(isError);
-
-  useEffect(() => {
-    if (error) {
-      navigate("/admin/auth");
-    }
-  }, [error, navigate]);
 
   return (
     <>

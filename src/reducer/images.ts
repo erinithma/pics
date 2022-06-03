@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { Api } from "../common/api";
 import { Image } from "../common/types";
 
@@ -6,11 +6,13 @@ export const fetchImages = createAsyncThunk(
   "api/images",
   async (page: number) => {
     try {
+      console.log("SUCC");
       return {
         ...(await Api.getImages(page)),
         error: false,
       };
     } catch {
+      console.log("FAIL");
       return {
         images: [],
         count: 0,
@@ -44,21 +46,24 @@ export const slice = createSlice({
   initialState: {
     images: [],
     count: 0,
-    error: false,
-  } as { images: Image[]; count: number; error: boolean },
-  reducers: {},
+  } as { images: Image[]; count: number },
+  reducers: {
+    reset(state) {
+      state.images = [];
+      state.count = 0;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchImages.fulfilled, (state, action) => {
       state.images = action.payload.images;
       state.count = action.payload.count;
-      state.error = action.payload.error;
     });
     builder.addCase(deleteImage.fulfilled, (state, action) => {
       state.images = action.payload.images;
       state.count = action.payload.count;
-      state.error = action.payload.error;
     });
   },
 });
 
 export const { reducer } = slice;
+export const { reset } = slice.actions;
