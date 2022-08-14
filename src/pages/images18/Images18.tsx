@@ -1,13 +1,13 @@
 import { useEffect, useMemo } from "react";
 import { useParams, useNavigate, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getImages, getCount, deleteImage, fetchImages } from "../../redux";
+import { getImages, getCount, deleteImage18, fetchImages18 } from "../../redux";
 import React from "react";
 import store from "../../redux/store";
-import styles from "./Images.module.css";
+import styles from "./Images18.module.css";
 import cx from "classnames";
 
-export const Images = () => {
+export const Images18 = () => {
   const params = useParams();
   const images = useSelector(getImages);
   const count = useSelector(getCount);
@@ -16,22 +16,22 @@ export const Images = () => {
   const navigate = useNavigate();
 
   const remove = (name: string) => {
-    store.dispatch(deleteImage({ name, page }));
+    store.dispatch(deleteImage18({ name, page }));
   };
 
   const gotoPage = (page: number) => {
-    navigate(`/admin/page/${page}`);
+    navigate(`/admin/18/page/${page}`);
   };
 
   useEffect(() => {
-    store.dispatch(fetchImages(page));
+    store.dispatch(fetchImages18(page));
   }, [page]);
 
   return (
     <>
       <div>
-        <NavLink className="nav-link" to={"/admin/18"}>
-          Фотки 18+
+        <NavLink className="nav-link" to={"/admin"}>
+          Фотки
         </NavLink>
         <NavLink className="nav-link" to={"/admin/anime"}>
           Аниме

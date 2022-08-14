@@ -44,6 +44,39 @@ export class Api {
     return Api.request("/delete", "POST", { name });
   }
 
+  static getImages18(
+    page: number,
+    perPage: number
+  ): Promise<{ images: Image[]; count: number }> {
+    return Api.request("/images18", "POST", { page, perPage });
+  }
+
+  static removeImage18(name: string) {
+    return Api.request("/delete18", "POST", { name });
+  }
+
+  static getMemes(
+    page: number,
+    perPage: number
+  ): Promise<{ images: Image[]; count: number }> {
+    return Api.request("/mem", "POST", { page, perPage });
+  }
+
+  static removeMem(name: string) {
+    return Api.request("/delete_mem", "POST", { name });
+  }
+
+  static getAnimes(
+    page: number,
+    perPage: number
+  ): Promise<{ images: Image[]; count: number }> {
+    return Api.request("/anime", "POST", { page, perPage });
+  }
+
+  static removeAnime(name: string) {
+    return Api.request("/delete_anime", "POST", { name });
+  }
+
   static auth(data: UserData) {
     return Api.request<UserData, { token: string }>(
       "/auth",

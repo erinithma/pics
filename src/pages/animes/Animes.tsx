@@ -1,13 +1,13 @@
 import { useEffect, useMemo } from "react";
 import { useParams, useNavigate, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getImages, getCount, deleteImage, fetchImages } from "../../redux";
+import { getImages, getCount, deleteAnime, fetchAnimes } from "../../redux";
 import React from "react";
 import store from "../../redux/store";
-import styles from "./Images.module.css";
+import styles from "./Animes.module.css";
 import cx from "classnames";
 
-export const Images = () => {
+export const Animes = () => {
   const params = useParams();
   const images = useSelector(getImages);
   const count = useSelector(getCount);
@@ -16,28 +16,28 @@ export const Images = () => {
   const navigate = useNavigate();
 
   const remove = (name: string) => {
-    store.dispatch(deleteImage({ name, page }));
+    store.dispatch(deleteAnime({ name, page }));
   };
 
   const gotoPage = (page: number) => {
-    navigate(`/admin/page/${page}`);
+    navigate(`/admin/anime/${page}`);
   };
 
   useEffect(() => {
-    store.dispatch(fetchImages(page));
+    store.dispatch(fetchAnimes(page));
   }, [page]);
 
   return (
     <>
       <div>
+        <NavLink className="nav-link" to={"/admin"}>
+          Фотки
+        </NavLink>
         <NavLink className="nav-link" to={"/admin/18"}>
           Фотки 18+
         </NavLink>
-        <NavLink className="nav-link" to={"/admin/anime"}>
-          Аниме
-        </NavLink>
         <NavLink className="nav-link" to={"/admin/mem"}>
-          Мемы
+          Мем
         </NavLink>
       </div>
       <div className={styles.images}>
