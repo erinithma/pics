@@ -1,0 +1,54 @@
+.images {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 24px;
+}
+
+.images div {
+  position: relative;
+}
+
+.removeButton {
+  position: absolute !important;
+  top: 20px;
+  left: 20px;
+}
+
+.img {
+  max-width: 100%;
+}
+
+.button {
+  border: 0;
+  background-color: #f33;
+  border-radius: 8px;
+  padding: 12px;
+  cursor: pointer;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.page {
+  border: 1px solid #ccc;
+  background-color: #eee;
+  border-radius: 4px;
+  padding: 4px;
+  cursor: pointer;
+  min-width: 48px;
+  margin: 2px;
+}
+
+.active {
+  background-color: #33f;
+}
+
+.buttonBlock {
+  position: absolute;
+  left: 10px;
+  width: calc(100% - 20px);
+  bottom: 10px;
+}
+
+.buttonBlock button {
+  margin-right: 12px;
+  margin-bottom: 12px;
+}

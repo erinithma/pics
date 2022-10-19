@@ -6,6 +6,7 @@ import { PageWrap } from "./pages/PageWrap";
 import { Images18 } from "./pages/images18";
 import { Memes } from "./pages/memes";
 import { Animes } from "./pages/animes";
+import { Unsorted } from "./pages/unsorted";
 
 function App() {
   return (
@@ -14,9 +15,14 @@ function App() {
         <div className="App">
           <Routes>
             <Route path="/admin/login" element={<Auth />} />
-            <Route path="/admin" element={<PageWrap page={<Images />} />} />
+            <Route path="/admin" element={<PageWrap page={<Unsorted />} />} />
             <Route
               path="/admin/page/:page"
+              element={<PageWrap page={<Unsorted />} />}
+            />
+            <Route path="/admin/12" element={<PageWrap page={<Images />} />} />
+            <Route
+              path="/admin/12/:page"
               element={<PageWrap page={<Images />} />}
             />
             <Route

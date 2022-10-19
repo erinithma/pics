@@ -40,8 +40,35 @@ export class Api {
     return Api.request("/images", "POST", { page, perPage });
   }
 
+  static getUnsorted(
+    page: number,
+    perPage: number
+  ): Promise<{ images: Image[]; count: number }> {
+    return Api.request("/unsorted", "POST", { page, perPage });
+  }
+
   static removeImage(name: string) {
     return Api.request("/delete", "POST", { name });
+  }
+
+  static removeUnsorted(name: string) {
+    return Api.request("/delete_unsorted", "POST", { name });
+  }
+
+  static move12(name: string) {
+    return Api.request("/move/12", "POST", { name });
+  }
+
+  static move18(name: string) {
+    return Api.request("/move/18", "POST", { name });
+  }
+
+  static moveAnime(name: string) {
+    return Api.request("/move/anime", "POST", { name });
+  }
+
+  static moveMem(name: string) {
+    return Api.request("/move/mem", "POST", { name });
   }
 
   static getImages18(

@@ -6,6 +6,9 @@ import React from "react";
 import store from "../../redux/store";
 import styles from "./Animes.module.css";
 import cx from "classnames";
+import { Button } from "@mui/material";
+import { Delete } from "@mui/icons-material";
+import { Box } from "@mui/system";
 
 export const Animes = () => {
   const params = useParams();
@@ -29,38 +32,56 @@ export const Animes = () => {
 
   return (
     <>
-      <div>
-        <NavLink className="nav-link" to={"/admin"}>
-          Фотки
+      <Box marginBottom={2}>
+        <NavLink to={"/admin"}>
+          <Button variant="contained" color="primary" sx={{ m: 1 }}>
+            Несортированное
+          </Button>
         </NavLink>
-        <NavLink className="nav-link" to={"/admin/18"}>
-          Фотки 18+
+        <NavLink to={"/admin/12"}>
+          <Button variant="contained" color="primary" sx={{ m: 1 }}>
+            12+
+          </Button>
         </NavLink>
-        <NavLink className="nav-link" to={"/admin/mem"}>
-          Мем
+        <NavLink to={"/admin/18"}>
+          <Button variant="contained" color="primary" sx={{ m: 1 }}>
+            18+
+          </Button>
         </NavLink>
-      </div>
+        <NavLink to={"/admin/mem"}>
+          <Button variant="contained" color="primary" sx={{ m: 1 }}>
+            Мемы
+          </Button>
+        </NavLink>
+      </Box>
       <div className={styles.images}>
         {images.map((i) => (
           <div key={i.name}>
             <img className={styles.img} src={i.url} alt={i.name} />
             <br />
-            <button className={styles.button} onClick={() => remove(i.name)}>
-              Удалить
-            </button>
+            <Button
+              onClick={() => remove(i.name)}
+              variant="contained"
+              color="error"
+            >
+              <Delete />
+            </Button>
           </div>
         ))}
       </div>
       <br />
       <div>
         {new Array(pages).fill(null).map((_, i) => (
-          <button
+          <Button
             key={i}
-            className={cx(styles.page, { [styles.active]: i + 1 === page })}
+            variant="outlined"
+            color="primary"
+            sx={{ m: 1 }}
+            disabled={i + 1 === page}
             onClick={() => gotoPage(i + 1)}
           >
             {i + 1}
-          </button>
+          </Button>
         ))}
       </div>
       <br />

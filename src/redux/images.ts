@@ -2,6 +2,27 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { Api } from "../common/api";
 import { Image } from "../common/types";
 
+export const fetchUnsorted = createAsyncThunk(
+  "api/unsorted",
+  async (page: number) => {
+    try {
+      return {
+        ...(await Api.getUnsorted(
+          page,
+          +(process.env.REACT_APP_PER_PAGE || 20)
+        )),
+        status: "success",
+      };
+    } catch {
+      return {
+        images: [],
+        count: 0,
+        status: "fail",
+      };
+    }
+  }
+);
+
 export const fetchImages = createAsyncThunk(
   "api/images",
   async (page: number) => {
@@ -99,6 +120,116 @@ export const deleteImage = createAsyncThunk(
   }
 );
 
+export const deleteUnsorted = createAsyncThunk(
+  "api/deleteUnsorted",
+  async (data: { name: string; page: number }) => {
+    try {
+      await Api.removeUnsorted(data.name);
+      return {
+        ...(await Api.getUnsorted(
+          data.page,
+          +(process.env.REACT_APP_PER_PAGE || 20)
+        )),
+        status: "success",
+      };
+    } catch {
+      return {
+        images: [],
+        count: 0,
+        status: "fail",
+      };
+    }
+  }
+);
+
+export const move12 = createAsyncThunk(
+  "api/move12",
+  async (data: { name: string; page: number }) => {
+    try {
+      await Api.move12(data.name);
+      return {
+        ...(await Api.getUnsorted(
+          data.page,
+          +(process.env.REACT_APP_PER_PAGE || 20)
+        )),
+        status: "success",
+      };
+    } catch {
+      return {
+        images: [],
+        count: 0,
+        status: "fail",
+      };
+    }
+  }
+);
+
+export const move18 = createAsyncThunk(
+  "api/move18",
+  async (data: { name: string; page: number }) => {
+    try {
+      await Api.move18(data.name);
+      return {
+        ...(await Api.getUnsorted(
+          data.page,
+          +(process.env.REACT_APP_PER_PAGE || 20)
+        )),
+        status: "success",
+      };
+    } catch {
+      return {
+        images: [],
+        count: 0,
+        status: "fail",
+      };
+    }
+  }
+);
+
+export const moveMem = createAsyncThunk(
+  "api/moveMem",
+  async (data: { name: string; page: number }) => {
+    try {
+      await Api.moveMem(data.name);
+      return {
+        ...(await Api.getUnsorted(
+          data.page,
+          +(process.env.REACT_APP_PER_PAGE || 20)
+        )),
+        status: "success",
+      };
+    } catch {
+      return {
+        images: [],
+        count: 0,
+        status: "fail",
+      };
+    }
+  }
+);
+
+export const moveAnime = createAsyncThunk(
+  "api/moveAnime",
+  async (data: { name: string; page: number }) => {
+    try {
+      await Api.moveAnime(data.name);
+      return {
+        ...(await Api.getUnsorted(
+          data.page,
+          +(process.env.REACT_APP_PER_PAGE || 20)
+        )),
+        status: "success",
+      };
+    } catch {
+      return {
+        images: [],
+        count: 0,
+        status: "fail",
+      };
+    }
+  }
+);
+
 export const deleteImage18 = createAsyncThunk(
   "api/deleteImage18",
   async (data: { name: string; page: number }) => {
@@ -178,6 +309,14 @@ export const slice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(fetchUnsorted.fulfilled, (state, action) => {
+      state.images = action.payload.images;
+      state.count = action.payload.count;
+    });
+    builder.addCase(deleteUnsorted.fulfilled, (state, action) => {
+      state.images = action.payload.images;
+      state.count = action.payload.count;
+    });
     builder.addCase(fetchImages.fulfilled, (state, action) => {
       state.images = action.payload.images;
       state.count = action.payload.count;
@@ -207,6 +346,22 @@ export const slice = createSlice({
       state.count = action.payload.count;
     });
     builder.addCase(deleteAnime.fulfilled, (state, action) => {
+      state.images = action.payload.images;
+      state.count = action.payload.count;
+    });
+    builder.addCase(move12.fulfilled, (state, action) => {
+      state.images = action.payload.images;
+      state.count = action.payload.count;
+    });
+    builder.addCase(move18.fulfilled, (state, action) => {
+      state.images = action.payload.images;
+      state.count = action.payload.count;
+    });
+    builder.addCase(moveMem.fulfilled, (state, action) => {
+      state.images = action.payload.images;
+      state.count = action.payload.count;
+    });
+    builder.addCase(moveAnime.fulfilled, (state, action) => {
       state.images = action.payload.images;
       state.count = action.payload.count;
     });

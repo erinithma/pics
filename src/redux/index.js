@@ -9,4 +9,10 @@ export {
   deleteMem,
   fetchAnimes,
   deleteAnime,
+  fetchUnsorted,
+  deleteUnsorted,
+  move12,
+  move18,
+  moveAnime,
+  moveMem,
 } from "./images";
