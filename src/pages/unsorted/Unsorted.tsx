@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from "react";
-import { useParams, useNavigate, NavLink } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import {
   getImages,
@@ -14,10 +14,10 @@ import {
 import React from "react";
 import store from "../../redux/store";
 import styles from "./Unsorted.module.css";
-import cx from "classnames";
 import { Button } from "@mui/material";
-import { Delete } from "@mui/icons-material";
-import { Box } from "@mui/system";
+import { Nav } from "../../common/Nav";
+import { Pager } from "../../common/Pager";
+import { ImageList } from "../../common/ImageList";
 
 export const Unsorted = () => {
   const params = useParams();
@@ -57,90 +57,42 @@ export const Unsorted = () => {
 
   return (
     <>
-      <Box marginBottom={2}>
-        <NavLink to={"/admin/12"}>
-          <Button variant="contained" color="primary" sx={{ m: 1 }}>
-            12+
-          </Button>
-        </NavLink>
-        <NavLink to={"/admin/18"}>
-          <Button variant="contained" color="primary" sx={{ m: 1 }}>
-            18+
-          </Button>
-        </NavLink>
-        <NavLink to={"/admin/anime"}>
-          <Button variant="contained" color="primary" sx={{ m: 1 }}>
-            Аниме
-          </Button>
-        </NavLink>
-        <NavLink to={"/admin/mem"}>
-          <Button variant="contained" color="primary" sx={{ m: 1 }}>
-            Мемы
-          </Button>
-        </NavLink>
-      </Box>
-      <div className={styles.images}>
-        {images.map((i) => (
-          <div key={i.name}>
-            <img className={styles.img} src={i.url} alt={i.name} />
-            <br />
+      <Nav type="unsorted" />
+      <ImageList images={images} onRemove={remove}>
+        {(name) => (
+          <div className={styles.buttonBlock}>
             <Button
-              className={styles.removeButton}
-              onClick={() => remove(i.name)}
+              onClick={() => moveTo12(name)}
               variant="contained"
-              color="error"
+              color="primary"
             >
-              <Delete />
+              12+
             </Button>
-            <div className={styles.buttonBlock}>
-              <Button
-                onClick={() => moveTo12(i.name)}
-                variant="contained"
-                color="primary"
-              >
-                12+
-              </Button>
-              <Button
-                onClick={() => moveTo18(i.name)}
-                variant="contained"
-                color="primary"
-              >
-                18+
-              </Button>
-              <Button
-                onClick={() => moveToAnime(i.name)}
-                variant="contained"
-                color="primary"
-              >
-                Аниме
-              </Button>
-              <Button
-                onClick={() => moveToMem(i.name)}
-                variant="contained"
-                color="primary"
-              >
-                Мем
-              </Button>
-            </div>
+            <Button
+              onClick={() => moveTo18(name)}
+              variant="contained"
+              color="primary"
+            >
+              18+
+            </Button>
+            <Button
+              onClick={() => moveToAnime(name)}
+              variant="contained"
+              color="primary"
+            >
+              Аниме
+            </Button>
+            <Button
+              onClick={() => moveToMem(name)}
+              variant="contained"
+              color="primary"
+            >
+              Мем
+            </Button>
           </div>
-        ))}
-      </div>
-      <br />
-      <div>
-        {new Array(pages).fill(null).map((_, i) => (
-          <Button
-            key={i}
-            variant="outlined"
-            color="primary"
-            sx={{ m: 1 }}
-            disabled={i + 1 === page}
-            onClick={() => gotoPage(i + 1)}
-          >
-            {i + 1}
-          </Button>
-        ))}
-      </div>
-      <br />
+        )}
+      </ImageList>
+      <Pager page={page} pages={pages} onGotoPage={gotoPage} />
     </>
   );
 };
