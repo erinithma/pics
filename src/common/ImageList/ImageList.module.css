@@ -4,11 +4,11 @@
   grid-gap: 24px;
 }
 
-.images div {
+.imagesInner {
   position: relative;
 }
 
-.images button {
+.removeButton {
   position: absolute;
   top: 20px;
   left: 20px;

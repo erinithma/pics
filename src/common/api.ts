@@ -3,6 +3,12 @@ import { Image, UserData } from "./types";
 
 type Method = "POST" | "GET" | "DELETE";
 
+type Apart = {
+  word: string;
+  udar: number | string;
+  slogs: number | string;
+};
+
 export class Api {
   static request<Request, Response>(
     url: string,
@@ -113,5 +119,21 @@ export class Api {
     ).then(({ token }) => {
       setToken(token);
     });
+  }
+
+  static addApart(apart: Apart) {
+    return Api.request("/apart/add", "POST", apart);
+  }
+
+  static getApart(word: string): Promise<{ words: string[] }> {
+    return Api.request("/apart/get", "POST", { word });
+  }
+
+  static addAdverb(apart: Apart) {
+    return Api.request("/adverb/add", "POST", apart);
+  }
+
+  static getAdverb(word: string): Promise<{ words: string[] }> {
+    return Api.request("/adverb/get", "POST", { word });
   }
 }

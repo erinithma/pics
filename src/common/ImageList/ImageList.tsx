@@ -17,13 +17,14 @@ export const ImageList: FC<ImageListProps> = ({
   return (
     <div className={styles.images}>
       {images.map((i) => (
-        <div key={i.name}>
+        <div key={i.name} className={styles.imagesInner}>
           <img className={styles.img} src={i.url} alt={i.name} />
           <br />
           <Button
             onClick={() => onRemove(i.name)}
             variant="contained"
             color="error"
+            className={styles.removeButton}
           >
             <Delete />
           </Button>

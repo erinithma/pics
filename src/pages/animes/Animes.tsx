@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import { getImages, getCount, deleteAnime, fetchAnimes } from "../../redux";
 import React from "react";
 import store from "../../redux/store";
-import { Nav } from "../../common/Nav";
 import { ImageList } from "../../common/ImageList";
 import { Pager } from "../../common/Pager";
 
@@ -30,7 +29,6 @@ export const Animes = () => {
 
   return (
     <>
-      <Nav type="anime" />
       <ImageList images={images} onRemove={remove} />
       <Pager page={page} pages={pages} onGotoPage={gotoPage} />
     </>

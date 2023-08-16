@@ -57,7 +57,6 @@ export const Unsorted = () => {
 
   return (
     <>
-      <Nav type="unsorted" />
       <ImageList images={images} onRemove={remove}>
         {(name) => (
           <div className={styles.buttonBlock}>

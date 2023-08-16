@@ -16,3 +16,5 @@ export {
   moveAnime,
   moveMem,
 } from "./images";
+
+export { fetchApart, fetchAdverb } from "./words";

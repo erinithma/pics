@@ -21,7 +21,7 @@ export const Images = () => {
   };
 
   const gotoPage = (page: number) => {
-    navigate(`/admin/page/${page}`);
+    navigate(`/admin/12plus/${page}`);
   };
 
   useEffect(() => {
@@ -30,7 +30,6 @@ export const Images = () => {
 
   return (
     <>
-      <Nav type="plus12" />
       <ImageList images={images} onRemove={remove} />
       <Pager page={page} pages={pages} onGotoPage={gotoPage} />
     </>

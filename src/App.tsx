@@ -7,6 +7,8 @@ import { Images18 } from "./pages/images18";
 import { Memes } from "./pages/memes";
 import { Animes } from "./pages/animes";
 import { Unsorted } from "./pages/unsorted";
+import { Apart } from "./pages/apart/Apart";
+import { Adverb } from "./pages/adverb/Adverb";
 
 function App() {
   return (
@@ -17,20 +19,23 @@ function App() {
             <Route path="/admin/login" element={<Auth />} />
             <Route path="/admin" element={<PageWrap page={<Unsorted />} />} />
             <Route
-              path="/admin/page/:page"
+              path="/admin/:page"
               element={<PageWrap page={<Unsorted />} />}
             />
-            <Route path="/admin/12" element={<PageWrap page={<Images />} />} />
             <Route
-              path="/admin/12/:page"
+              path="/admin/12plus"
               element={<PageWrap page={<Images />} />}
             />
             <Route
-              path="/admin/18"
+              path="/admin/12plus/:page"
+              element={<PageWrap page={<Images />} />}
+            />
+            <Route
+              path="/admin/18plus"
               element={<PageWrap page={<Images18 />} />}
             />
             <Route
-              path="/admin/18/:page"
+              path="/admin/18plus/:page"
               element={<PageWrap page={<Images18 />} />}
             />
             <Route path="/admin/mem" element={<PageWrap page={<Memes />} />} />
@@ -45,6 +50,14 @@ function App() {
             <Route
               path="/admin/anime/:page"
               element={<PageWrap page={<Animes />} />}
+            />
+            <Route
+              path="/admin/apart"
+              element={<PageWrap page={<Apart />} />}
+            />
+            <Route
+              path="/admin/adverb"
+              element={<PageWrap page={<Adverb />} />}
             />
             <Route
               path="*"
