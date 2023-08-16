@@ -3,7 +3,6 @@ import { Container } from "@mui/system";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Api } from "../../common/api";
-import { Nav } from "../../common/Nav";
 import { countWord } from "../../common/wordsLib/common";
 import { fetchApart, getWords } from "../../redux";
 import store from "../../redux/store";

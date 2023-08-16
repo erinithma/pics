@@ -2,11 +2,9 @@ import { useEffect, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getImages, getCount, deleteImage, fetchImages } from "../../redux";
-import React from "react";
 import store from "../../redux/store";
 import { ImageList } from "../../common/ImageList";
 import { Pager } from "../../common/Pager";
-import { Nav } from "../../common/Nav";
 
 export const Images = () => {
   const params = useParams();

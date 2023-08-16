@@ -2,9 +2,7 @@ import { useEffect, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getImages, getCount, deleteImage18, fetchImages18 } from "../../redux";
-import React from "react";
 import store from "../../redux/store";
-import { Nav } from "../../common/Nav";
 import { ImageList } from "../../common/ImageList";
 import { Pager } from "../../common/Pager";
 

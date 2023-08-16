@@ -11,11 +11,9 @@ import {
   moveAnime,
   moveMem,
 } from "../../redux";
-import React from "react";
 import store from "../../redux/store";
 import styles from "./Unsorted.module.css";
 import { Button } from "@mui/material";
-import { Nav } from "../../common/Nav";
 import { Pager } from "../../common/Pager";
 import { ImageList } from "../../common/ImageList";
 
